@@ -44,9 +44,32 @@ monthly_precipitation_total = {
     12 : []
 }
 for month in monthly_precipitation:
-    monthly_precipitation_total[month].append(sum(monthly_precipitation[month]))
+    value = sum(monthly_precipitation[month])
+    monthly_precipitation_total[month].append(value)
 
-print(monthly_precipitation_total)
+
 
 with open('results.json', 'w', encoding='utf-8') as file:
     json.dump(monthly_precipitation_total, file, indent=4, ensure_ascii=False)
+
+yearly_precipitation = []
+
+for month in monthly_precipitation_total:
+    value = sum(monthly_precipitation[month])
+    yearly_precipitation.append(value)
+
+sums = sum(yearly_precipitation)
+
+relative_monthly_precipitation = {
+}
+for month in monthly_precipitation:
+    value = sum(monthly_precipitation[month])
+    relative_monthly_precipitation[month] = value/sums *100
+
+
+# print(monthly_precipitation_total)
+# print(sums)
+# print(relative_monthly_precipitation)
+
+with open('resultss.json', 'w', encoding='utf-8') as file:
+    json.dump(relative_monthly_precipitation, file, indent=4, ensure_ascii=False)
