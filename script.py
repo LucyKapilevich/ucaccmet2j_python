@@ -30,22 +30,10 @@ for entry in Seattle_data:
 # print(monthly_precipitation)
 
 monthly_precipitation_total = {
-    1 : [],
-    2 : [],
-    3 : [],
-    4 : [],
-    5 : [], 
-    6 : [],
-    7 : [],
-    8 : [],
-    9 : [],
-    10 : [],
-    11 : [],
-    12 : []
 }
 for month in monthly_precipitation:
     value = sum(monthly_precipitation[month])
-    monthly_precipitation_total[month].append(value)
+    monthly_precipitation_total[month] = value
 
 
 
@@ -73,3 +61,15 @@ for month in monthly_precipitation:
 
 with open('resultss.json', 'w', encoding='utf-8') as file:
     json.dump(relative_monthly_precipitation, file, indent=4, ensure_ascii=False)
+
+dictionary = {
+    'Seattle' : {
+        'station': 'GHCND:US1WAKG0038',
+        'state' : 'WA',
+        'total_monthly_precipitation' : monthly_precipitation_total,
+        'relative_monthly_precipitation' : relative_monthly_precipitation
+    }
+}
+
+with open('resultsss.json', 'w', encoding='utf-8') as file:
+    json.dump(dictionary, file, indent=4, ensure_ascii=False)
